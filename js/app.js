@@ -78,12 +78,26 @@ class Interface {
   }
 
   leftoverBudget(spendQuantity) {
-    const leftover = document.querySelector('spam#restante');
+    const leftover = document.querySelector('span#restante');
     const userBudgetLeftover = budgetQuantity.leftoverBudget(spendQuantity);
-    console.log(userBudgetLeftover);
-
+    leftover.innerHTML = `${userBudgetLeftover}`
+    this.budgetControl();
   }
+  budgetControl() {
+    const totalBudget = budgetQuantity.budget;
+    const leftoverBudget = budgetQuantity.leftover;
 
+    // si el presupuesto total es menor del 25% de lo que te queda
+    if ((totalBudget) / 4 > leftoverBudget) {
+      const leftover = document.querySelector('.restante');
+      leftover.classList.remove('alert-success', 'alert-warning');
+      leftover.classList.add('alert-danger');
+    } else if ((totalBudget) / 2 > leftoverBudget) {
+      const leftover = document.querySelector('.restante');
+      leftover.classList.remove('alert-success');
+      leftover.classList.add('alert-warning');
+    }
+  }
 }
 
 
