@@ -3,7 +3,7 @@ const form = document.querySelector('#agregar-gasto');
 let budgetQuantity;
 
 function appStart() {
-  if (userBudget === null || userBudget === '') {
+  if (userBudget === null || userBudget === '' || isNaN(userBudget)) {
     window.location.reload()
   } else {
     budgetQuantity = new Budget(userBudget);
@@ -26,7 +26,7 @@ function addSpend(ev) {
 
   } else {
     ui.printMessage('Gasto añadido', 'correcto')
-
+    ui.addSpendToList(spendName, spendQuantity);
   }
 }
 
@@ -65,7 +65,16 @@ class Interface {
       form.reset();
     }, 3000)
   }
-
+  addSpendToList(spendName, spendQuantity) {
+    const spendsList = document.querySelector('#gastos ul');
+    const li = document.createElement('li');
+    li.className = 'list-group-item d-flex justify-content-between align-items-center';
+    li.innerHTML = `
+    ${spendName}
+    <span class='badge badge-primary badge-pill'>${spendQuantity} €</apan>
+    `
+    spendsList.appendChild(li);
+  }
 
 }
 
