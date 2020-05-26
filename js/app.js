@@ -27,6 +27,7 @@ function addSpend(ev) {
   } else {
     ui.printMessage('Gasto añadido', 'correcto')
     ui.addSpendToList(spendName, spendQuantity);
+    ui.leftoverBudget(spendQuantity);
   }
 }
 
@@ -74,6 +75,13 @@ class Interface {
     <span class='badge badge-primary badge-pill'>${spendQuantity} €</apan>
     `
     spendsList.appendChild(li);
+  }
+
+  leftoverBudget(spendQuantity) {
+    const leftover = document.querySelector('spam#restante');
+    const userBudgetLeftover = budgetQuantity.leftoverBudget(spendQuantity);
+    console.log(userBudgetLeftover);
+
   }
 
 }
